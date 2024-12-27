@@ -1,0 +1,75 @@
+strcpy与strncpy的区别
+1
+2
+3
+在C语言中，strcpy和strncpy是两个常用的字符串复制函数。它们的主要区别在于复制的方式和安全性。
+
+strcpy函数
+
+strcpy函数用于将一个字符串复制到另一个字符串中。其函数原型为：
+
+char *strcpy(char *dest, const char *src);
+参数：dest为目标字符串指针，src为源字符串指针。
+
+返回值：返回目标字符串的指针。
+
+strcpy函数从源字符串的起始位置开始，逐个字符复制到目标字符串的位置，直到遇到源字符串的结束符\0
+1
+。需要注意的是，目标字符串必须有足够的空间来容纳源字符串，否则可能会导致缓冲区溢出
+2
+。
+
+示例代码：
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+char source[] = "Hello, World!";
+char destination[20];
+strcpy(destination, source);
+printf("Copied string: %s\n", destination);
+return 0;
+}
+strncpy函数
+
+strncpy函数用于复制字符串的前n个字符。其函数原型为：
+
+char *strncpy(char *dest, const char *src, size_t n);
+参数：dest为目标字符串指针，src为源字符串指针，n为要复制的最大字符数。
+
+返回值：返回目标字符串的指针。
+
+strncpy函数会复制源字符串的最多n个字符到目标字符串中。如果源字符串的长度小于n，则会在目标字符串中使用\0进行填充
+1
+。如果源字符串的长度大于或等于n，则strncpy不会自动添加\0，需要手动添加以确保字符串的正确终止
+2
+。
+
+示例代码：
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+char source[] = "Hello, World!";
+char destination[10];
+strncpy(destination, source, sizeof(destination));
+destination[sizeof(destination) - 1] = '\0';
+printf("Copied string: %s\n", destination);
+return 0;
+}
+区别总结
+
+复制方式：strcpy复制整个源字符串，而strncpy复制指定数量的字符。
+
+目标字符串终止：strcpy自动添加\0，而strncpy可能需要手动添加\0
+1
+。
+
+安全性：strncpy在某种程度上更安全，因为可以指定要复制的字符数，避免了缓冲区溢出的风险
+2
+。
+
+在实际编程中，选择使用哪个函数应根据具体需求和情境来决定。对于简单的字符串复制操作，strcpy可能更方便，但在需要更严格控制字符串长度和避免溢出的情况下，推荐使用strncpy
+1
