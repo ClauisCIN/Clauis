@@ -21,7 +21,14 @@ cin.getline属于istream流，而不是string流，它与getline(cin, str)函数
 。
 
 当使用cin>>后再使用getline()时，需要先清除输入缓冲区中的换行符。否则，getline()可能会被跳过
-1
+void input(char name[][50],int grade[])
+{ for(int i=0;i<num;i++)
+{ cout<<"请输入第"<<(i+1)<<"个同学的姓名"<<endl;
+   cin.getline(name[i],50);
+   cout<<"请输入第"<<(i+1)<<"个同学高考总分"<<endl;
+   cin>>grade[i];
+   cin.ignore(1000,'\n');}
+}
 。
 
 扩展用法:
