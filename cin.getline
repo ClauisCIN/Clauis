@@ -1,0 +1,44 @@
+在C++中，cin.getline函数用于从输入流中读取一行字符，直到遇到指定的终止字符或达到指定的字符数。这个函数可以包含空格，因此非常适合读取包含空格的字符串。
+
+示例:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+char str[100];
+cout << "请输入一段文本：";
+cin.getline(str, 100);
+cout << "你输入的文本是：" << str << endl;
+return 0;
+}
+在上面的示例中，程序提示用户输入一段文本，然后使用cin.getline函数读取输入，并将其存储在str数组中。这里，cin.getline接受两个参数：第一个是字符数组，第二个是要读取的最大字符数。如果输入的文本长度小于数组大小，则会在末尾自动添加一个空字符('\0')。
+
+注意事项:
+
+cin.getline属于istream流，而不是string流，它与getline(cin, str)函数不同
+1
+。
+
+当使用cin>>后再使用getline()时，需要先清除输入缓冲区中的换行符。否则，getline()可能会被跳过
+1
+。
+
+扩展用法:
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+string str;
+cout << "请输入一段文本：";
+getline(cin, str);
+cout << "你输入的文本是：" << str << endl;
+return 0;
+}
+在这个扩展示例中，我们使用了string类和getline()函数来读取一行文本。这种方式更加简洁，并且可以直接处理string对象
+2
+。
+
+总结来说，cin.getline是C++中处理带有空格的字符串输入的有效工具。它允许用户输入完整的句子或段落，并能够正确地读取和存储数据。
